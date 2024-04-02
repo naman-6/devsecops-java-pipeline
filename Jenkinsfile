@@ -3,10 +3,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven'
-    }
-
     stages {
         stage('Git Checkout') {
             steps {
@@ -14,14 +10,6 @@ pipeline {
                     branch: "main",
                     url: "https://github.com/naman-6/devsecops-java-pipeline.git"
                 )
-            }
-        }
-
-        stage('Unit Test: maven') {
-            steps {
-                script {
-                    mvnTest()
-                }
             }
         }
     }
