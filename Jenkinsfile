@@ -3,6 +3,10 @@
 pipeline {
     agent any
 
+    parameters {
+        choice (name: 'action', choices: 'create\ndelete', description: 'Choose Create/Delete')
+    }
+
     stages {
         stage('Git Checkout') {
             steps {
@@ -13,9 +17,9 @@ pipeline {
             }
         }
 
-        stage('Unit Test Maven') {
+        stage('Static Code Analysis: SonarQube') {
             steps {
-                mvnTest()
+                staticCodeAnalysis()
             }
         }
     }
