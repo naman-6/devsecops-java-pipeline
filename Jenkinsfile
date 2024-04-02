@@ -9,6 +9,7 @@ pipeline {
 
     stages {
         stage('Git Checkout') {
+            when { expression { params.action == 'create' } }
             steps {
                 gitCheckout(
                     branch: "main",
@@ -18,6 +19,7 @@ pipeline {
         }
 
         stage('Static Code Analysis: SonarQube') {
+            when { expression { params.action == 'create' } }
             steps {
                 staticCodeAnalysis()
             }
