@@ -21,14 +21,18 @@ pipeline {
         stage('Unit Test: Maven') {
             when { expression { params.action == 'create' } }
             steps {
-                mvnTest()
+                script {
+                    mvnTest()
+                }
             }
         }
         
         stage('Integration Test: Maven') {
             when { expression { params.action == 'create' } }
             steps {
-                mvnIntegrationTest()
+                script {
+                    mvnIntegrationTest()
+                }
             }
         }
         
@@ -36,8 +40,10 @@ pipeline {
         stage('Static Code Analysis: SonarQube') {
             when { expression { params.action == 'create' } }
             steps {
-                def sonarCredentialsId = 'sonar-api'
-                staticCodeAnalysis(sonarCredentialsId)
+                script {
+                    def sonarCredentialsId = 'sonar-api'
+                    staticCodeAnalysis(sonarCredentialsId)
+                }
             }
         }
     }
