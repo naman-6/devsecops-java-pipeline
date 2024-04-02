@@ -17,11 +17,27 @@ pipeline {
                 )
             }
         }
+        
+        stage('Unit Test: Maven') {
+            when { expression { params.action == 'create' } }
+            steps {
+                mvnTest()
+            }
+        }
+        
+        stage('Integration Test: Maven') {
+            when { expression { params.action == 'create' } }
+            steps {
+                mvnIntegrationTest()
+            }
+        }
+        
 
         stage('Static Code Analysis: SonarQube') {
             when { expression { params.action == 'create' } }
             steps {
-                staticCodeAnalysis()
+                def sonarCredentialsId = 'sonar-api'
+                staticCodeAnalysis(sonarCredentialsId)
             }
         }
     }
