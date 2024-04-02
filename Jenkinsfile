@@ -7,7 +7,10 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 script {
-                    gitCheckout(branch: "main", url: "https://github.com/naman-6/devsecops-java-pipeline.git")
+                    gitCheckout(
+                        branch: "main"
+                        url: "https://github.com/naman-6/devsecops-java-pipeline.git"
+                    )
                 }
             }
         }
