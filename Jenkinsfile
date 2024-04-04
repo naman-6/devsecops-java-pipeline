@@ -3,13 +3,13 @@
 pipeline {
     agent any
 
-    // parameters {
-    //     choice (name: 'action', choices: 'create\ndelete', description: 'Choose Create/Delete')
-    // }
+    parameters {
+        choice (name: 'action', choices: 'create\ndelete', description: 'Choose Create/Delete')
+    }
 
     stages {
         stage('Git Checkout') {
-            // when { expression { params.action == 'create' } }
+            when { expression { params.action == 'create' } }
             steps {
                 gitCheckout(
                     branch: "main",
@@ -68,7 +68,7 @@ pipeline {
                         </body>
                     </html>"""
                 
-                emailtext (
+                emailext (
                     subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                     body: body,
                     to: 'naman.xy6@gmail.com',
