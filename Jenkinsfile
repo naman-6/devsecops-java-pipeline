@@ -68,10 +68,10 @@ pipeline {
                         </body>
                     </html>"""
                 
-                emailtext (
+                emailext (
                     subject: "${jobName} - Build ${buildNumber} - ${pipelineStatus.toUpperCase()}",
                     body: body,
-                    to: 'naman.xy6@gmail.com',
+                    to: 'jenkins@example.com',
                     from: 'jenkins@example.com',
                     replyTo: 'jenkins@example.com',
                     mimeType: 'text/html'
