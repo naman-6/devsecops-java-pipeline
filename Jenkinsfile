@@ -13,7 +13,7 @@ pipeline {
             steps {
                 gitCheckout(
                     branch: "main",
-                    url: "https://github.com/naman-6/devsecops-java-pieline.git"
+                    url: "https://github.com/naman-6/devsecops-java-pipeline.git"
                 )
             }
         }
